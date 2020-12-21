@@ -1,6 +1,16 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Department from '../components/Department.vue'
+import Teacher from '../components/Teacher.vue'
+import Student from '../components/Student.vue'
+import CreateStudent from '../components/CreateStudent.vue'
+import CreateDepartment from '../components/CreateDepartment.vue'
+import CreateTeacher from '../components/CreateTeacher.vue'
+import EditStudent from '../components/EditStudent.vue'
+import EditDepartment from '../components/EditDepartment.vue'
+import SignUpForm from '../components/SignUpForm.vue'
+import testcomponent from '../components/testcomponent.vue'
 
 Vue.use(VueRouter)
 
@@ -11,12 +21,54 @@ const routes = [
     component: Home
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path:'/Department',
+    name:'Department',
+    component: Department
+  },
+  {
+    path:'/CreateDepartment',
+    name:'CreateDepartment',
+    component: CreateDepartment
+  },
+  {
+    path:'/EditDepartment/:id',
+    name:'EditDepartment',
+    component: EditDepartment
+  },
+  {
+    path:'/Teacher',
+    name:'Teacher',
+    component: Teacher
+  },
+  {
+    path:'/CreateTeacher',
+    name:'CreateTeacher',
+    component: CreateTeacher
+  },
+  {
+    path:'/Student',
+    name:'Student',
+    component: Student
+  },
+  {
+    path:'/CreateStudent',
+    name:'CreateStudent',
+    component: CreateStudent
+  },
+  {
+    path:'/EditStudent/:id',
+    name:'EditStudent',
+    component: EditStudent
+  },
+  {
+    path:'/SignUpForm',
+    name:'SignUpForm',
+    component: SignUpForm
+  },
+  {
+    path:'/testcomponent',
+    name:'testcomponent',
+    component:testcomponent
   }
 ]
 

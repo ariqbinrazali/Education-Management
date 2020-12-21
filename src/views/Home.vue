@@ -1,18 +1,25 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    
+   <div class="jumbotron" >
+  <h1 class="display-3">Hello, world!</h1>
+  <p class="lead">This is a simple app for an education management system.</p>
+</div>
   </div>
 </template>
 
-<script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
-export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
+<script></script>
+<style scoped>
+.container {
+  position: relative;
+  text-align: center;
+  
 }
-</script>
+.jumbotron{
+position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+}
+</style>
