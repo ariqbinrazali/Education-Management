@@ -27,6 +27,11 @@
                          <p v-if="!$v.students.email.email">Please provide a valid email address.</p>
                         <p v-if="!$v.students.email.required">This field must not be empty.</p>
                     </div>
+                    <div class="form-group" :class="{invalid: $v.students.departmentId.$error}">
+                        <label for="age">Student's Department ID</label>
+                        <input type="int" class="form-control" @blur="$v.students.departmentId.$touch()" id="departmentId" v-model.number="students.departmentId" />
+                        <p v-if="!$v.students.departmentId.required">This field must not be empty.</p>
+                    </div>
 
                     <div>
                         <button type="submit" :disabled= "$v.$invalid" class="btn btn-primary">Submit</button>
@@ -50,6 +55,7 @@ export default {
                 name: "",
                 age: "",
                 email: "",
+                departmentId: "",
             },
         };
     },
@@ -67,6 +73,11 @@ export default {
             required,
             numeric,
             minVal: minValue(17)
+        },
+        departmentId: {
+            required,
+            numeric,
+           
         }
         }
         
@@ -81,6 +92,7 @@ export default {
                 name: this.students.name,
                 age: this.students.age,
                 email: this.students.email,
+                departmentId: this.students.departmentId
             };
             /// ada async ada await , await > tunggu proccess siap baru run next line 
             let res = await axios.patch(`https://localhost:44386/api/Student?studentId=${studentId}`,
@@ -97,6 +109,7 @@ export default {
             
           
             this.students = res.data
+            
             ///console.log("respon",this.students)
         },
     },

@@ -9,6 +9,7 @@ import CreateDepartment from '../components/CreateDepartment.vue'
 import CreateTeacher from '../components/CreateTeacher.vue'
 import EditStudent from '../components/EditStudent.vue'
 import EditDepartment from '../components/EditDepartment.vue'
+import EditTeacher from '../components/EditTeacher.vue'
 import SignUpForm from '../components/SignUpForm.vue'
 import testcomponent from '../components/testcomponent.vue'
 
@@ -59,6 +60,11 @@ const routes = [
     path:'/EditStudent/:id',
     name:'EditStudent',
     component: EditStudent
+  },
+  {
+    path:'/EditTeacher/:id',
+    name:'EditTeacher',
+    component: EditTeacher
   },
   {
     path:'/SignUpForm',

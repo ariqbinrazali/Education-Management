@@ -1,15 +1,15 @@
 <template>
 <div>
     <div>
-        <div >
+        <div>
             <nav class="navbar navbar-expand-lg navbar-light font-weight-bold" style="background-color: #e3f2fd;">
-                <a class="navbar-brand">Education Management System</a>
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
+                    <ul class="navbar-nav">
                         <li class="nav-item active-toggle">
                             <router-link class="nav-link" to="/" href="">Home </router-link>
                         </li>
@@ -23,6 +23,9 @@
                             <router-link class="nav-link" to="/Student">Student</router-link>
                         </li>
                     </ul>
+                    <div class="mx-auto " style="padding-right:133px">
+                        <a class="navbar-brand">Education Management System</a>
+                    </div>
                     <div class="form-inline my-lg-0">
                         <button type="button" class="btn btn-outline-info  mr-sm-2" data-toggle="modal" data-target="#exampleModal">Log In</button>
                         <router-link to='/SignUpForm' class="btn btn-outline-info  my-sm-0">Sign Up</router-link>
@@ -47,7 +50,7 @@
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
                                                         <path fill-rule="evenodd" d="M10 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6 5c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
                                                     </svg> Username: </label>
-                                                <input type="text" class="form-control mr-5" id="username" placeholder="Username" />
+                                                <input type="text" class="form-control mr-5" id="username" placeholder="Username" v-model="username"/>
                                             </div>
                                             <div class="form-group my-2 ">
                                                 <label for="passwordInput" class="col ml-5">
@@ -56,7 +59,7 @@
                                                         <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
                                                     </svg>
                                                     Password: </label>
-                                                <input type="text" class="form-control mr-5" id="password" placeholder="Password" />
+                                                <input type="text" class="form-control mr-5" id="password" placeholder="Password" v-model="password" />
                                             </div>
                                             <div class="mx-auto" style="width: 170px; ">
                                                 <button type="submit" class="btn btn-primary my-2 " style="width: 150px ">Login</button>
@@ -73,17 +76,38 @@
         </div>
 
         <div class="body text-white">
-            
-            
+
             <router-view></router-view>
 
         </div>
     </div>
 </div>
 </template>
+<script>
+export default {
+    data(){
+        return {
+            username:'',
+            password:''
+        }
+    },
+    methods:{
+        onSubmit (){
+            const formData = {
+                username: this.username,
+                password: this.password
+            }
+            this.$store.dispatch('login',this.formData)
+            .then(() => {
+                this.$router.push("/")
+            })
+        }
+    }
+}
+</script>
 
 <style>
-body{
+body {
     background-image: url("https://hawkesburyit.com.au/wp-content/uploads/2016/04/website-background.gif");
 }
 </style>

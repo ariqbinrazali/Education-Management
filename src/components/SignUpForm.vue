@@ -10,12 +10,12 @@
             </svg></h3>
             </div>
             <div class="row py-2 ">
-                <div class="col-md-6 offset-md-3 mt-2 bg-light bg-gradient py-4">
+                <div class="col-md-6 offset-md-3 mt-2 bg-light bg-gradient py-4 text-dark">
                     <form @submit.prevent="onSubmit">
-                        <div class="form-group" :class="{invalid: $v.name.$error}">
-                            <label for="name">Username</label>
-                            <input type="string" class="form-control" @blur="$v.name.$touch()" id="name" v-model="name">
-                            <p v-if="!$v.name.required">This field must not be empty.</p>
+                        <div class="form-group" :class="{invalid: $v.username.$error}">
+                            <label for="username">Username</label>
+                            <input type="string" class="form-control" @blur="$v.username.$touch()" id="username" v-model="username">
+                            <p v-if="!$v.username.required">This field must not be empty.</p>
                         </div>
                         <div class="form-group" :class="{invalid: $v.password.$error}">
                             <label for="Password">Password</label>
@@ -57,14 +57,15 @@ import {
 export default {
     data() {
         return {
-            name: '',
+            username: '',
             password: '',
-            repeatPassword: ''
+            repeatPassword: '',
+           
         }
     },
     validations: {
 
-        name: {
+        username: {
             required,
         },
         password: {
@@ -77,6 +78,22 @@ export default {
         }
 
     },
+    methods: {
+        async onSubmit() {
+            const formData = {
+                username: this.username,
+                password: this.password,
+                role: 1,
+            };
+            let res = await axios.post('https://localhost:44386/api/User',
+                formData)
+
+            this.$router.push('/')
+
+            return res
+
+        }
+    }
 
 }
 </script>
