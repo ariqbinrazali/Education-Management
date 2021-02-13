@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Home2 from '../views/Home2.vue'
 import Department from '../components/Department.vue'
 import Teacher from '../components/Teacher.vue'
 import Student from '../components/Student.vue'
@@ -20,6 +21,11 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/2',
+    name: 'Home2',
+    component: Home2
   },
   {
     path:'/Department',
