@@ -58,6 +58,12 @@
                 v-if="!auth"
                 >Sign Up</router-link
               >
+              <button
+                a @click="LogOut"
+                class="btn btn-outline-info my-sm-0"
+                v-if="auth"
+                >Log Out</button
+              >
               <!-- Modal -->
               <div
                 class="modal fade"
@@ -194,10 +200,21 @@ export default {
         password: this.password,
       }
       console.log(formData)
-      this.$store.dispatch('login',formData) 
-      
+      this.$store.dispatch('login',formData)
     },
+
+    Reload(){
+      window.location.reload;
+    },
+
+    LogOut(){
+      this.$store.dispatch('logout')
+    }
   },
+
+  created() {
+    this.$store.dispatch('AutoLogin')
+  }
 };
 </script>
 

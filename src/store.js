@@ -22,15 +22,26 @@ export default new Vuex.Store({
     login(state, token) {
       state.token = token;
     },
+    logout(state){
+      state.token = null
+    }
   },
 
   actions: {
     login({ commit }, formData) {
-      let res = axios
+      const config = {
+        headers: {
+          'Authorization': 'Bearer '+''
+        }
+      }
+
+       let res = axios
         .post("https://localhost:44386/Authentication", {
           username: formData.username,
           password: formData.password,
-        })
+        },
+        config
+        )
         .then(
           res => {
             console.log(res);
@@ -41,8 +52,26 @@ export default new Vuex.Store({
            cookie.set('token', res.data.token)
           },
           
+          
         );
     },
+
+    AutoLogin({commit}){
+      const token = localStorage.getItem('token')
+      if(!token){
+        return
+      }
+      commit('login',{
+        token: token
+      })
+    },
+
+    logout({commit}){
+      cookie.remove("token")
+      localStorage.removeItem('token')
+      commit('logout')
+      location.reload()
+    }
   },
 
   getters: {
